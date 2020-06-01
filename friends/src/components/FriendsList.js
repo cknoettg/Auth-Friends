@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
-
+import Friend from './Friend';
 
 const FriendsList = () => {
+    //condense this into one state statement
     const [friends, setFriends] = useState([]);
     const [name, setName] = useState('');
     const [age, setAge] = useState();
@@ -44,9 +45,9 @@ const FriendsList = () => {
     return (
         <>
         <div>
-        {/* {friends.map(item => (
+        {friends.map(item => (
             <Friend key={item.id} name={item.name} age={item.age} email={item.email}/>
-        ))} */}
+        ))}
         </div>
         <div>
             <form onSubmit={addFriend}>
