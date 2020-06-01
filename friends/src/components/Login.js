@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import PacmanLoader from 'react-spinners';
 
 //Login Form
@@ -6,22 +7,35 @@ import PacmanLoader from 'react-spinners';
 //  Form with state, handle changes, authenticator
 
 export const Login = props => {
-    //we want name, password
-    //can we combine this into one state statement?
-    const [uname, setUname] = useState('');
-    const [password, setPassword] = useState('');
-    //isLoading - prop for spinner is called 'loading'
-
+    //we want name, password, isLoading
+    const [login, setLogin] = useState({
+        username: '',
+        password: '',
+        isLoading: false
+    });
 
     //change handler
     const handleChanges = e => {
-
+        setLogin({ ...login, [e.target.name]: e.target.value });
     }
 
     //authenticator - login function
     const login = e => {
         e.preventDefault();
         //use localStorage
+        axios
+            .post("http://localhost:5000/api/login", login)
+            .then(res => {
+                localStorage.setItem("token", res.data.payload);
+                props.history.push('/friends');
+                console.log("Successful login", res.data);
+            })
+            .catch(err => console.log(err.response));
+        setLogin({
+            username: '',
+            password: '',
+            isLoading: false
+        })
     }
 
     //render
