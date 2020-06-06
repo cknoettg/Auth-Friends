@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import PacmanLoader from 'react-spinners';
 
@@ -9,7 +9,7 @@ import PacmanLoader from 'react-spinners';
 //  ICE
 //  Form with state, handle changes, authenticator
 
-export const Login = props => {
+const Login = props => {
     //we want name, password, isLoading
     const [login, setLogin] = useState({
         username: '',
@@ -26,7 +26,7 @@ export const Login = props => {
     const logins = e => {
         e.preventDefault();
         //use localStorage
-        axios
+        axiosWithAuth()
             .post("http://localhost:5000/api/login", login)
             .then(res => {
                 localStorage.setItem("token", res.data.payload);
