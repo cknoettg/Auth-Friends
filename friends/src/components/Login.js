@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { axiosWithAuth } from "../utlis/axiosWithAuth";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 import PacmanLoader from 'react-spinners';
+
+//Problem with react-spinners - requires react16 up
 
 //Login Form
 //  ICE
@@ -21,7 +23,7 @@ export const Login = props => {
     }
 
     //authenticator - login function
-    const login = e => {
+    const logins = e => {
         e.preventDefault();
         //use localStorage
         axios
@@ -43,10 +45,10 @@ export const Login = props => {
     //  reminder: create Spinner
     //  React docs on Spinners: https://www.npmjs.com/package/react-spinners
     return (
-        <form onSubmit={login}>
-            <input type="text" value={uname} name={uname} onChange={handleChanges} placeholder="Username" />
-            <input type="password" value={password} name={password} onChange={handleChanges} placeholder="Password" />
-            <button onClick={onSubmit}>Login</button>
+        <form onSubmit={logins}>
+            <input type="text" value={props.uname} name={props.uname} onChange={handleChanges} placeholder="Username" />
+            <input type="password" value={props.password} name={props.password} onChange={handleChanges} placeholder="Password" />
+            <button onClick={props.onSubmit}>Login</button>
             <PacmanLoader
             loading="true"
             color="#000000"
