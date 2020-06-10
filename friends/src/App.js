@@ -12,10 +12,10 @@ function App() {
     <Router>
       <div className="App">
         <div>
-         <Link to="/login"> Login</Link>
+         <Link to="/api/login"> Login</Link>
         </div>
         <div>
-          <Link to="/protected">Friends List</Link>
+          <Link to="/api/friends">Friends List</Link>
         </div>
        
 
